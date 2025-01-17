@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto";
+
+service TrainTicketService {
+  // Purchase a ticket
+  rpc PurchaseTicket (PurchaseTicketRequest) returns (PurchaseTicketResponse);
+
+  // Get receipt details for a user
+  rpc GetReceipt (GetReceiptRequest) returns (GetReceiptResponse);
+
+  // View users and their seat allocation by section
+  rpc ViewUsersBySection (ViewUsersBySectionRequest) returns (ViewUsersBySectionResponse);
+
+  // Remove a user from the train
+  rpc RemoveUser (RemoveUserRequest) returns (RemoveUserResponse);
+
+  // Modify a user's seat
+  rpc ModifySeat (ModifySeatRequest) returns (ModifySeatResponse);
+
+  // Analytics
+  rpc GetAnalytics(GetAnalyticsRequest) returns (GetAnalyticsResponse);
+}
+
+message PurchaseTicketRequest {
+  string first_name = 1;
+  string last_name = 2;
+  string email = 3;
+  string from = 4;
+  string to = 5;
+  string section = 6; // A or B
+}
+
+message PurchaseTicketResponse {
+  string receipt_id = 1;
+  string from = 2;
+  string to = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string email = 6;
+  float price_paid = 7;
+  string seat = 8;
+  string section = 9;
+}
+
+message GetReceiptRequest {
+  string receipt_id = 1;
+}
+
+message GetReceiptResponse {
+  string receipt_id = 1;
+  string from = 2;
+  string to = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string email = 6;
+  float price_paid = 7;
+  string seat = 8;
+  string section = 9;
+}
+
+message ViewUsersBySectionRequest {
+  string section = 1; // A or B
+}
+
+message ViewUsersBySectionResponse {
+  repeated UserSeatAllocation users = 1;
+}
+
+message UserSeatAllocation {
+  string first_name = 1;
+  string last_name = 2;
+  string email = 3;
+  string seat = 4;
+}
+
+message RemoveUserRequest {
+  string receipt_id = 1;
+}
+
+message RemoveUserResponse {
+  bool success = 1;
+}
+
+message ModifySeatRequest {
+  string receipt_id = 1;
+  string new_section = 2; // A or B
+  string new_seat = 3;
+}
+
+message ModifySeatResponse {
+  bool success = 1;
+}
+
+message GetAnalyticsRequest {}
+
+message GetAnalyticsResponse {
+    int32 total_tickets = 1;
+    int32 total_tickets_sold = 2;
+    int32 total_tickets_available = 3;
+    double total_revenue = 4;
+    int32 section_a_occupancy = 5;
+    int32 section_b_occupancy = 6;
+}
