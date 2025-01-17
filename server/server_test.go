@@ -157,6 +157,6 @@ func TestAnalytics(t *testing.T) {
 	assert.Equal(t, int32(100), analyticsResp.TotalTickets)
 	assert.Equal(t, int32(1), analyticsResp.TotalTicketsSold)
 	assert.Equal(t, int32(99), analyticsResp.TotalTicketsAvailable)
-	assert.Equal(t, float64(20.0), analyticsResp.TotalRevenue)
+	assert.Equal(t, float64(20.0), analyticsResp.TotalRevenueInDollars)
 	assert.Equal(t, int32(1), analyticsResp.SectionAOccupancy)
 }

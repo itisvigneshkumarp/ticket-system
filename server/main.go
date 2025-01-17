@@ -193,7 +193,7 @@ func (s *server) GetAnalytics(ctx context.Context, req *tspb.GetAnalyticsRequest
 		TotalTickets:          int32(2 * s.sectionSize),
 		TotalTicketsSold:      int32(totalTicketsSold),
 		TotalTicketsAvailable: int32((2 * s.sectionSize) - (sectionAOccupancy + sectionBOccupancy)),
-		TotalRevenue:          totalRevenue,
+		TotalRevenueInDollars: totalRevenue,
 		SectionAOccupancy:     int32(sectionAOccupancy),
 		SectionBOccupancy:     int32(sectionBOccupancy),
 	}, nil

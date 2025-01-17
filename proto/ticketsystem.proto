@@ -100,7 +100,7 @@ message GetAnalyticsResponse {
     int32 total_tickets = 1;
     int32 total_tickets_sold = 2;
     int32 total_tickets_available = 3;
-    double total_revenue = 4;
+    double total_revenue_in_dollars = 4;
     int32 section_a_occupancy = 5;
     int32 section_b_occupancy = 6;
 }

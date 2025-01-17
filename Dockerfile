@@ -17,7 +17,7 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN go build -o main .
+RUN go build -o /app/main /app/server/
 
 # Use a minimal base image for runtime
 FROM alpine:3.18
